@@ -81,5 +81,14 @@ describe("Object", () => {
           done();
         });
     });
+    it("return not found when object key not exists", (done) => {
+      chai.request(app)
+        .get(url + '/' + Math.random)
+        .end((err, res) => {
+          expect(res).to.have.status(404);
+          expect(res.body.error).to.equal('Not found');
+          done();
+        });
+    });
   });
 });

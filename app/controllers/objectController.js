@@ -28,6 +28,8 @@ exports.findObject = (req, res) => {
     .exec((err, obj) => {
       if (err)
         return res.send(err);
+      if (obj === null)
+        return res.status(404).json({error: 'Not found'});
       res.json(obj);
     });
 };
